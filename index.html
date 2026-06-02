@@ -1,12 +1,647 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Git & GitHub Concepts</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.0/gsap.min.js" defer></script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #08101a;
+      --surface: #112635;
+      --surface-alt: #172d42;
+      --text: #e8f1ff;
+      --muted: #9bb7d1;
+      --accent: #6ad3ff;
+      --accent-strong: #38c2ff;
+      --border: rgba(255, 255, 255, 0.08);
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: radial-gradient(circle at top, rgba(58, 135, 255, 0.14), transparent 28%),
+        linear-gradient(180deg, #06101a 0%, #0b1724 100%);
+      color: var(--text);
+    }
+
+    body {
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 2rem 1.25rem 1rem;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      margin: 0 0 0.5rem;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      letter-spacing: -0.04em;
+    }
+
+    header p {
+      margin: 0.25rem 0 1.75rem;
+      color: var(--muted);
+      max-width: 50rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+      padding: 0 1.25rem 2rem;
+      max-width: 1080px;
+      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    section.card {
+      background: rgba(16, 32, 50, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    section.card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(58, 195, 255, 0.14), transparent 15%);
+      pointer-events: none;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.35rem;
+      color: white;
+    }
+
+    .tag {
+      display: inline-flex;
+      margin-bottom: 1rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag span {
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(56, 194, 255, 0.12);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .description,
+    .considerations,
+    .resources {
+      margin: 0 0 1rem;
+    }
+
+    .considerations ul,
+    .resources ul {
+      margin: 0.25rem 0 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+    }
+
+    .resources a {
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
+
+    .resources a:hover {
+      text-decoration: underline;
+    }
+
+    .scene {
+      width: 100%;
+      height: 220px;
+      margin-top: 0.75rem;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .node {
+      fill: #0f2f55;
+      stroke: #6ad3ff;
+      stroke-width: 2;
+      rx: 16;
+    }
+
+    .node-text {
+      fill: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+      dominant-baseline: middle;
+      text-anchor: middle;
+    }
+
+    .arrow {
+      stroke: rgba(255, 255, 255, 0.65);
+      stroke-width: 2;
+      fill: none;
+      marker-end: url(#arrowhead);
+    }
+
+    .status {
+      fill: rgba(106, 211, 255, 0.12);
+      stroke: rgba(58, 194, 255, 0.24);
+      stroke-width: 1;
+    }
+
+    footer {
+      padding: 2rem 1.25rem 3rem;
+      max-width: 1080px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    @media (max-width: 520px) {
+      .scene {
+        height: 190px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Learning Git</h1>
-    <p>Hello everybody. This is a simple website to understand the basics of working with Git and Github as part of the AI & Design Systems course.</p>
+  <header>
+    <h1>Git & GitHub Concepts</h1>
+    <p>Explore Git and GitHub concepts with descriptions, usage considerations, and animated SVG diagrams using GSAP.</p>
+  </header>
+
+  <main class="grid">
+    <section class="card" id="repo">
+      <div class="tag"><span>Repository</span></div>
+      <h2>Repository (repo)</h2>
+      <p class="description">A repository is the project folder that Git tracks. It stores the full version history, branches, and metadata for a project.</p>
+      <div class="considerations">
+        <strong>Considerations:</strong>
+        <ul>
+          <li>Keep a repo focused on one project or service.</li>
+          <li>Use <code>.gitignore</code> to exclude generated files and secrets.</li>
+          <li>Choose a clear README and branch strategy from the start.</li>
+        </ul>
+      </div>
+      <div class="resources">
+        <strong>Resources:</strong>
+        <ul>
+          <li><a href="https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository" target="_blank">Git Basics: Getting a Git Repository</a></li>
+          <li><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo" target="_blank">GitHub: Create a repository</a></li>
+        </ul>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 360 200">
+          <defs>
+            <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dd7ff" />
+            </marker>
+          </defs>
+          <rect class="status" x="14" y="14" width="332" height="172" rx="28" />
+          <rect class="node" x="50" y="45" width="105" height="50" rx="16" />
+          <text class="node-text" x="102.5" y="75">Working</text>
+          <rect class="node" x="205" y="45" width="105" height="50" rx="16" />
+          <text class="node-text" x="257.5" y="75">Repo</text>
+          <path class="arrow" d="M 155 70 C 170 70, 185 70, 200 70" />
+          <path class="arrow" d="M 200 90 C 185 90, 170 90, 155 90" opacity="0.4" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="card" id="clone">
+      <div class="tag"><span>Clone</span></div>
+      <h2>Clone</h2>
+      <p class="description">Cloning downloads a repository copy to your machine, including commit history and branches. It creates a local copy linked to the remote.</p>
+      <div class="considerations">
+        <strong>Considerations:</strong>
+        <ul>
+          <li>Clone only when you need local access.</li>
+          <li>Use shallow clones for very large repositories.</li>
+          <li>Update remote URLs after renaming or moving repos.</li>
+        </ul>
+      </div>
+      <div class="resources">
+        <strong>Resources:</strong>
+        <ul>
+          <li><a href="https://git-scm.com/docs/git-clone" target="_blank">Git Clone docs</a></li>
+          <li><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository" target="_blank">GitHub: Cloning a repository</a></li>
+        </ul>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 360 200">
+          <defs>
+            <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dd7ff" />
+            </marker>
+          </defs>
+          <rect class="node" x="40" y="62" width="120" height="60" rx="14" />
+          <text class="node-text" x="100" y="92">Remote</text>
+          <rect class="node" x="200" y="62" width="120" height="60" rx="14" />
+          <text class="node-text" x="260" y="92">Local</text>
+          <path class="arrow" d="M 161 92 L 199 92" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="card" id="branch">
+      <div class="tag"><span>Branch</span></div>
+      <h2>Branch</h2>
+      <p class="description">A branch is a safe parallel timeline. It lets you develop features or fixes independently from the main code line.</p>
+      <div class="considerations">
+        <strong>Considerations:</strong>
+        <ul>
+          <li>Name branches clearly by feature, bug, or release.</li>
+          <li>Keep branch lifetimes short for easier collaboration.</li>
+          <li>Sync your branch frequently with main.</li>
+        </ul>
+      </div>
+      <div class="resources">
+        <strong>Resources:</strong>
+        <ul>
+          <li><a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell" target="_blank">Git Branching</a></li>
+          <li><a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-branches" target="_blank">GitHub branches guide</a></li>
+        </ul>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 360 200">
+          <defs>
+            <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dd7ff" />
+            </marker>
+          </defs>
+          <circle cx="80" cy="110" r="18" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <text class="node-text" x="80" y="110">main</text>
+          <circle cx="175" cy="55" r="18" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <text class="node-text" x="175" y="55">feat</text>
+          <circle cx="270" cy="165" r="18" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <text class="node-text" x="270" y="165">fix</text>
+          <path class="arrow" d="M 95 105 C 130 95, 155 80, 160 65" />
+          <path class="arrow" d="M 95 115 C 155 145, 185 155, 260 165" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="card" id="commit">
+      <div class="tag"><span>Commit</span></div>
+      <h2>Commit</h2>
+      <p class="description">A commit is a recorded snapshot and message describing a change. It becomes part of the repo's history.</p>
+      <div class="considerations">
+        <strong>Considerations:</strong>
+        <ul>
+          <li>Write meaningful commit messages.</li>
+          <li>Commit small, logical units of work.</li>
+          <li>Stage only related files before committing.</li>
+        </ul>
+      </div>
+      <div class="resources">
+        <strong>Resources:</strong>
+        <ul>
+          <li><a href="https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository" target="_blank">Git commits</a></li>
+          <li><a href="https://chris.beams.io/posts/git-commit/" target="_blank">How to write a Git commit message</a></li>
+        </ul>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 360 200">
+          <defs>
+            <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dd7ff" />
+            </marker>
+          </defs>
+          <rect class="node" x="110" y="38" width="140" height="52" rx="16" />
+          <text class="node-text" x="180" y="65">Commit</text>
+          <path class="arrow" d="M 180 90 L 180 140" />
+          <rect class="node" x="90" y="140" width="160" height="42" rx="14" />
+          <text class="node-text" x="170" y="165">Snapshot</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="card" id="push-pull">
+      <div class="tag"><span>Push / Pull</span></div>
+      <h2>Push / Pull</h2>
+      <p class="description">Push uploads local commits to the remote. Pull downloads remote updates and merges them into your local branch.</p>
+      <div class="considerations">
+        <strong>Considerations:</strong>
+        <ul>
+          <li>Pull before you push to reduce conflicts.</li>
+          <li>Push only finished or review-ready work.</li>
+          <li>Use fetch when you want more control over remote changes.</li>
+        </ul>
+      </div>
+      <div class="resources">
+        <strong>Resources:</strong>
+        <ul>
+          <li><a href="https://git-scm.com/docs/git-push" target="_blank">Git Push docs</a></li>
+          <li><a href="https://git-scm.com/docs/git-pull" target="_blank">Git Pull docs</a></li>
+        </ul>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 360 200">
+          <defs>
+            <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dd7ff" />
+            </marker>
+          </defs>
+          <rect class="node" x="36" y="56" width="90" height="50" rx="14" />
+          <text class="node-text" x="81" y="85">Local</text>
+          <rect class="node" x="234" y="56" width="90" height="50" rx="14" />
+          <text class="node-text" x="279" y="85">Remote</text>
+          <path class="arrow" d="M 126 75 L 234 75" />
+          <path class="arrow" d="M 234 95 L 126 95" opacity="0.45" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="card" id="diff">
+      <div class="tag"><span>Diff</span></div>
+      <h2>Diff</h2>
+      <p class="description">A diff shows file changes between commits, branches, or working trees. It highlights additions, removals, and edits.</p>
+      <div class="considerations">
+        <strong>Considerations:</strong>
+        <ul>
+          <li>Inspect diffs before merging or reviewing code.</li>
+          <li>Keep changes focused so diffs stay readable.</li>
+          <li>Use diff tools to compare file versions visually.</li>
+        </ul>
+      </div>
+      <div class="resources">
+        <strong>Resources:</strong>
+        <ul>
+          <li><a href="https://git-scm.com/docs/git-diff" target="_blank">Git Diff docs</a></li>
+          <li><a href="https://docs.github.com/en/pull-requests/reviewing-changes-in-pull-requests/viewing-a-pull-request-diff" target="_blank">GitHub diff viewer</a></li>
+        </ul>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 360 200">
+          <rect x="36" y="45" width="135" height="110" rx="18" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <rect x="189" y="45" width="135" height="110" rx="18" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <line x1="68" y1="70" x2="148" y2="70" stroke="#7dd7ff" stroke-width="4" />
+          <line x1="68" y1="90" x2="148" y2="90" stroke="#7dd7ff" stroke-width="4" opacity="0.5" />
+          <line x1="68" y1="110" x2="148" y2="110" stroke="#7dd7ff" stroke-width="4" />
+          <line x1="221" y1="70" x2="301" y2="70" stroke="#7dd7ff" stroke-width="4" opacity="0.5" />
+          <line x1="221" y1="90" x2="301" y2="90" stroke="#7dd7ff" stroke-width="4" />
+          <line x1="221" y1="110" x2="301" y2="110" stroke="#7dd7ff" stroke-width="4" opacity="0.7" />
+          <path class="arrow" d="M 171 100 L 189 100" />
+          <text class="node-text" x="103.5" y="165">Before</text>
+          <text class="node-text" x="261" y="165">After</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="card" id="merge">
+      <div class="tag"><span>Merge</span></div>
+      <h2>Merge</h2>
+      <p class="description">Merge combines one branch into another. It joins multiple timelines into a single history path.</p>
+      <div class="considerations">
+        <strong>Considerations:</strong>
+        <ul>
+          <li>Merge regularly to reduce conflict size.</li>
+          <li>Choose merge strategies intentionally.</li>
+          <li>Review branch changes before merging.</li>
+        </ul>
+      </div>
+      <div class="resources">
+        <strong>Resources:</strong>
+        <ul>
+          <li><a href="https://git-scm.com/docs/git-merge" target="_blank">Git Merge docs</a></li>
+          <li><a href="https://docs.github.com/en/articles/about-merge-methods-on-github" target="_blank">GitHub merge methods</a></li>
+        </ul>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 360 200">
+          <defs>
+            <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dd7ff" />
+            </marker>
+          </defs>
+          <circle cx="90" cy="55" r="18" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <text class="node-text" x="90" y="55">A</text>
+          <circle cx="270" cy="55" r="18" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <text class="node-text" x="270" y="55">B</text>
+          <circle cx="180" cy="155" r="18" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <text class="node-text" x="180" y="155">M</text>
+          <path class="arrow" d="M 102 65 C 145 95, 155 135, 180 137" />
+          <path class="arrow" d="M 258 65 C 215 95, 205 135, 180 137" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="card" id="rebase">
+      <div class="tag"><span>Rebase</span></div>
+      <h2>Rebase</h2>
+      <p class="description">Rebase reapplies commits on top of a new base branch. It rewrites history so your work appears built from the latest main branch.</p>
+      <div class="considerations">
+        <strong>Considerations:</strong>
+        <ul>
+          <li>Avoid rebasing public history already shared with teammates.</li>
+          <li>Use rebase to keep history linear and tidy.</li>
+          <li>Resolve conflicts carefully while replaying commits.</li>
+        </ul>
+      </div>
+      <div class="resources">
+        <strong>Resources:</strong>
+        <ul>
+          <li><a href="https://git-scm.com/docs/git-rebase" target="_blank">Git Rebase docs</a></li>
+          <li><a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing" target="_blank">Merging vs rebasing</a></li>
+        </ul>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 360 200">
+          <defs>
+            <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dd7ff" />
+            </marker>
+          </defs>
+          <circle cx="85" cy="60" r="16" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <text class="node-text" x="85" y="60">1</text>
+          <circle cx="145" cy="60" r="16" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <text class="node-text" x="145" y="60">2</text>
+          <circle cx="205" cy="60" r="16" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <text class="node-text" x="205" y="60">3</text>
+          <circle cx="90" cy="150" r="16" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <text class="node-text" x="90" y="150">A</text>
+          <circle cx="150" cy="150" r="16" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <text class="node-text" x="150" y="150">B</text>
+          <path class="arrow" d="M 85 76 C 85 110, 90 130, 90 134" />
+          <path class="arrow" d="M 145 76 C 145 110, 150 130, 150 134" />
+          <path class="arrow" d="M 205 76 C 205 110, 210 130, 210 134" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="card" id="merge-conflict">
+      <div class="tag"><span>Merge conflict</span></div>
+      <h2>Merge conflict</h2>
+      <p class="description">A merge conflict happens when two branches change the same lines. Git pauses and asks you to resolve the conflict manually.</p>
+      <div class="considerations">
+        <strong>Considerations:</strong>
+        <ul>
+          <li>Resolve conflicts by understanding both sides.</li>
+          <li>Test after merging to ensure correctness.</li>
+          <li>Communicate with teammates when shared code is affected.</li>
+        </ul>
+      </div>
+      <div class="resources">
+        <strong>Resources:</strong>
+        <ul>
+          <li><a href="https://git-scm.com/docs/git-merge#_how_conflicts_are_presented" target="_blank">Git merge conflict help</a></li>
+          <li><a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts" target="_blank">GitHub resolve merge conflicts</a></li>
+        </ul>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 360 200">
+          <defs>
+            <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dd7ff" />
+            </marker>
+          </defs>
+          <rect x="52" y="40" width="100" height="70" rx="14" class="node" />
+          <text class="node-text" x="102" y="75">Branch A</text>
+          <rect x="208" y="40" width="100" height="70" rx="14" class="node" />
+          <text class="node-text" x="258" y="75">Branch B</text>
+          <rect x="130" y="120" width="100" height="55" rx="14" class="node" />
+          <text class="node-text" x="180" y="150">Conflict</text>
+          <path class="arrow" d="M 107 83 L 130 130" />
+          <path class="arrow" d="M 253 83 L 230 130" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="card" id="pull-request">
+      <div class="tag"><span>Pull Request</span></div>
+      <h2>Pull Request (PR)</h2>
+      <p class="description">A pull request is a request to review and merge one branch into another. It's the main collaboration workflow on GitHub.</p>
+      <div class="considerations">
+        <strong>Considerations:</strong>
+        <ul>
+          <li>Add a clear description and link related issues.</li>
+          <li>Use draft PRs for work in progress.</li>
+          <li>Encourage reviewers with focused, small PRs.</li>
+        </ul>
+      </div>
+      <div class="resources">
+        <strong>Resources:</strong>
+        <ul>
+          <li><a href="https://docs.github.com/en/pull-requests" target="_blank">GitHub pull requests</a></li>
+          <li><a href="https://www.atlassian.com/git/tutorials/making-a-pull-request" target="_blank">How to make a pull request</a></li>
+        </ul>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 360 200">
+          <defs>
+            <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dd7ff" />
+            </marker>
+          </defs>
+          <rect class="node" x="60" y="54" width="90" height="50" rx="14" />
+          <text class="node-text" x="105" y="82">Feature</text>
+          <rect class="node" x="210" y="54" width="90" height="50" rx="14" />
+          <text class="node-text" x="255" y="82">main</text>
+          <path class="arrow" d="M 150 79 L 210 79" />
+          <text class="node-text" x="180" y="135">Review</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="card" id="issue">
+      <div class="tag"><span>Issue</span></div>
+      <h2>Issue</h2>
+      <p class="description">An issue is a ticket for a bug, task, or feature request. It tracks work and discussion separate from code.</p>
+      <div class="considerations">
+        <strong>Considerations:</strong>
+        <ul>
+          <li>Write clear titles and use labels for priority.</li>
+          <li>Link issues to pull requests and commits.</li>
+          <li>Use templates to standardize reporting.</li>
+        </ul>
+      </div>
+      <div class="resources">
+        <strong>Resources:</strong>
+        <ul>
+          <li><a href="https://docs.github.com/en/issues" target="_blank">GitHub issues</a></li>
+          <li><a href="https://www.atlassian.com/agile/issue-tracking" target="_blank">Issue tracking best practices</a></li>
+        </ul>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 360 200">
+          <defs>
+            <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dd7ff" />
+            </marker>
+          </defs>
+          <rect class="node" x="100" y="40" width="160" height="100" rx="18" />
+          <text class="node-text" x="180" y="72">Issue</text>
+          <line x1="130" y1="95" x2="230" y2="95" stroke="#7dd7ff" stroke-width="3" />
+          <line x1="140" y1="115" x2="220" y2="115" stroke="#7dd7ff" stroke-width="2" opacity="0.7" />
+          <path class="arrow" d="M 180 140 L 180 170" />
+          <circle cx="180" cy="184" r="12" fill="#0f2f55" stroke="#6ad3ff" stroke-width="2" />
+          <text class="node-text" x="180" y="184">TODO</text>
+        </svg>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Built with vanilla HTML, CSS, and JavaScript. Animations use GSAP to illustrate Git workflow motion.
+  </footer>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const animateStroke = (selector) => {
+        const element = document.querySelector(selector);
+        if (!element) return;
+        gsap.fromTo(
+          element,
+          { strokeDasharray: '0 100', strokeDashoffset: 100 },
+          { strokeDasharray: '100 0', strokeDashoffset: 0, duration: 1.5, ease: 'power1.out', repeat: -1, yoyo: true }
+        );
+      };
+
+      const nodeTargets = document.querySelectorAll('.card svg .node, .card svg circle');
+      if (nodeTargets.length) {
+        gsap.fromTo(nodeTargets, { scale: 0.95, opacity: 0.85 }, { scale: 1, opacity: 1, duration: 1.2, ease: 'sine.inOut', repeat: -1, yoyo: true, stagger: 0.03 });
+      }
+
+      animateStroke('#clone path');
+      animateStroke('#push-pull path:first-of-type');
+      animateStroke('#push-pull path:last-of-type');
+      animateStroke('#diff path:nth-of-type(1)');
+      animateStroke('#diff path:nth-of-type(2)');
+      animateStroke('#merge path:first-of-type');
+      animateStroke('#merge path:last-of-type');
+      animateStroke('#rebase path:nth-of-type(1)');
+
+      gsap.utils.toArray('section.card').forEach((card, index) => {
+        gsap.from(card, {
+          opacity: 0,
+          y: 20,
+          duration: 0.8,
+          delay: index * 0.06,
+          ease: 'power2.out',
+        });
+      });
+    });
+  </script>
 </body>
 </html>
