@@ -83,80 +83,95 @@
     .section-bar h2 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.03em; }
     .section-bar span { font-size: 0.82rem; color: var(--text-3); }
 
-    /* Grid */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px; padding-bottom: 80px; }
+    /* Concepts */
+    .concepts { position: relative; z-index: 1; padding-bottom: 80px; }
 
-    /* Card */
-    .card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 26px; position: relative;
-      overflow: hidden; transition: border-color 0.22s, background 0.22s, transform 0.22s;
-      will-change: transform;
+    .concept {
+      border-top: 1px solid var(--border);
+      padding-top: 48px;
+      margin-bottom: 64px;
     }
-    .card:hover { border-color: var(--border-hover); background: var(--surface-hover); transform: translateY(-2px); }
-    .card-top { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; }
+
+    .concept-header {
+      max-width: 1180px; margin: 0 auto; padding: 0 24px 32px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+
+    .concept-title { display: flex; align-items: center; gap: 14px; }
+    .concept-title h3 { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.025em; }
+
     .card-icon {
-      width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
+      width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
     }
-    .card-icon svg { width: 18px; height: 18px; }
-    .card-top h3 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; flex: 1; color: var(--text); }
+    .card-icon svg { width: 20px; height: 20px; }
+
     .badge {
-      padding: 3px 9px; border-radius: 999px; font-size: 0.68rem;
+      padding: 4px 11px; border-radius: 999px; font-size: 0.7rem;
       font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; flex-shrink: 0;
     }
-    .desc { font-size: 0.875rem; color: var(--text-2); line-height: 1.68; margin-bottom: 18px; }
 
-    /* Scene */
-    .scene {
-      width: 100%; border-radius: 11px; overflow: hidden;
-      margin-bottom: 16px; background: rgba(0,0,0,0.25);
-      border: 1px solid var(--border);
+    /* Stage — full-width animation area */
+    .stage {
+      width: 100%;
+      background: rgba(0,0,0,0.2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
     }
-    .scene svg { display: block; width: 100%; }
+    .stage svg { display: block; width: 100%; }
+
+    /* Below-stage text */
+    .concept-body {
+      max-width: 1180px; margin: 0 auto; padding: 28px 24px 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+    }
+
+    .desc { font-size: 0.9rem; color: var(--text-2); line-height: 1.72; }
 
     /* Command */
     .cmd {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.76rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
       background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 7px; padding: 9px 13px; display: flex; align-items: center; gap: 8px;
+      border-radius: 8px; padding: 10px 16px; display: flex; align-items: center; gap: 8px;
+      white-space: nowrap; flex-shrink: 0;
     }
     .cmd::before { content: '$'; color: var(--text-3); }
     .cmd span { color: #7dd3fc; }
 
     /* Tips */
-    .tips { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
-    .tips-title { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-3); margin-bottom: 7px; }
-    .tips ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-    .tips li { font-size: 0.82rem; color: var(--text-2); padding-left: 15px; position: relative; }
+    .tips-title { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-3); margin-bottom: 8px; }
+    .tips ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .tips li { font-size: 0.84rem; color: var(--text-2); padding-left: 16px; position: relative; }
     .tips li::before { content: '→'; position: absolute; left: 0; color: var(--text-3); }
-    .tips code { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text); background: rgba(255,255,255,0.06); padding: 1px 5px; border-radius: 4px; }
+    .tips code { font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: var(--text); background: rgba(255,255,255,0.06); padding: 1px 5px; border-radius: 4px; }
 
     /* Themes */
-    .t-blue  .card-icon { background: rgba(59,130,246,0.14);  color: var(--blue);   }
-    .t-blue  .badge     { background: rgba(59,130,246,0.13);  color: #60a5fa;        }
-    .t-purple.card-icon { background: rgba(139,92,246,0.14);  color: var(--purple); }
-    .t-purple.badge     { background: rgba(139,92,246,0.13);  color: #a78bfa;        }
-    .t-green .card-icon { background: rgba(16,185,129,0.14);  color: var(--green);  }
-    .t-green .badge     { background: rgba(16,185,129,0.13);  color: #34d399;        }
-    .t-orange.card-icon { background: rgba(245,158,11,0.14);  color: var(--orange); }
-    .t-orange.badge     { background: rgba(245,158,11,0.13);  color: #fbbf24;        }
-    .t-cyan  .card-icon { background: rgba(34,211,238,0.14);  color: var(--cyan);   }
-    .t-cyan  .badge     { background: rgba(34,211,238,0.13);  color: #67e8f9;        }
-    .t-pink  .card-icon { background: rgba(236,72,153,0.14);  color: var(--pink);   }
-    .t-pink  .badge     { background: rgba(236,72,153,0.13);  color: #f472b6;        }
-    .t-red   .card-icon { background: rgba(239,68,68,0.14);   color: var(--red);    }
-    .t-red   .badge     { background: rgba(239,68,68,0.13);   color: #f87171;        }
+    .t-blue.card-icon  { background: rgba(59,130,246,0.14);  color: var(--blue);   }
+    .t-blue.badge      { background: rgba(59,130,246,0.13);  color: #60a5fa;        }
+    .t-purple.card-icon{ background: rgba(139,92,246,0.14);  color: var(--purple); }
+    .t-purple.badge    { background: rgba(139,92,246,0.13);  color: #a78bfa;        }
+    .t-green.card-icon { background: rgba(16,185,129,0.14);  color: var(--green);  }
+    .t-green.badge     { background: rgba(16,185,129,0.13);  color: #34d399;        }
+    .t-orange.card-icon{ background: rgba(245,158,11,0.14);  color: var(--orange); }
+    .t-orange.badge    { background: rgba(245,158,11,0.13);  color: #fbbf24;        }
+    .t-cyan.card-icon  { background: rgba(34,211,238,0.14);  color: var(--cyan);   }
+    .t-cyan.badge      { background: rgba(34,211,238,0.13);  color: #67e8f9;        }
+    .t-pink.card-icon  { background: rgba(236,72,153,0.14);  color: var(--pink);   }
+    .t-pink.badge      { background: rgba(236,72,153,0.13);  color: #f472b6;        }
+    .t-red.card-icon   { background: rgba(239,68,68,0.14);   color: var(--red);    }
+    .t-red.badge       { background: rgba(239,68,68,0.13);   color: #f87171;        }
 
     /* Footer */
     footer { border-top: 1px solid var(--border); padding: 28px 0 36px; text-align: center; color: var(--text-3); font-size: 0.83rem; }
     footer a { color: var(--text-2); text-decoration: none; }
     footer a:hover { color: var(--text); }
 
-    @media (max-width: 580px) {
+    @media (max-width: 768px) {
       .hero { padding: 64px 0 48px; }
       .stats { gap: 28px; }
-      .grid { grid-template-columns: 1fr; }
+      .concept-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .concept-body { grid-template-columns: 1fr; gap: 24px; }
     }
   </style>
 </head>
@@ -166,7 +181,6 @@
 <div class="bg-glow"></div>
 
 <div class="wrap">
-
   <!-- ── Hero ── -->
   <header class="hero">
     <div class="eyebrow" id="ey">Visual Reference</div>
@@ -183,59 +197,63 @@
     <h2>Core Concepts</h2>
     <span>8 topics</span>
   </div>
+</div>
 
-  <main class="grid">
+<main class="concepts">
 
-    <!-- ── 1. Repository ── -->
-    <article class="card">
-      <div class="card-top">
+  <!-- ── 1. Repository ── -->
+  <section class="concept">
+    <div class="concept-header">
+      <div class="concept-title">
         <div class="card-icon t-blue">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
         </div>
         <h3>Repository</h3>
         <span class="badge t-blue">Repo</span>
       </div>
-      <p class="desc">The project folder Git tracks. Stores the complete version history, all branches, commits, and metadata in a hidden <code style="font-family:monospace;font-size:0.8em;background:rgba(255,255,255,0.07);padding:1px 5px;border-radius:4px">.git</code> directory.</p>
-      <div class="scene">
-        <svg id="svg-repo" viewBox="0 0 460 180">
-          <!-- File tree -->
-          <text x="20" y="26" font-family="JetBrains Mono,monospace" font-size="11" fill="#60a5fa" font-weight="600">📁 my-project/</text>
-          <line x1="32" y1="30" x2="32" y2="155" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
-
-          <line x1="32" y1="58" x2="52" y2="58" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
-          <rect x="52" y="44" width="120" height="28" rx="6" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.22)" stroke-width="1.5" class="r-node"/>
-          <text x="68" y="62" font-family="JetBrains Mono,monospace" font-size="10" fill="#93c5fd" class="r-node">📁 src/</text>
-
-          <line x1="32" y1="96" x2="52" y2="96" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
-          <rect x="52" y="82" width="130" height="28" rx="6" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.22)" stroke-width="1.5" class="r-node"/>
-          <text x="68" y="100" font-family="JetBrains Mono,monospace" font-size="10" fill="#93c5fd" class="r-node">📄 README.md</text>
-
-          <line x1="32" y1="134" x2="52" y2="134" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
-          <rect x="52" y="120" width="110" height="28" rx="6" fill="rgba(59,130,246,0.14)" stroke="rgba(59,130,246,0.45)" stroke-width="1.5" class="r-node"/>
-          <text x="68" y="138" font-family="JetBrains Mono,monospace" font-size="10" fill="#3b82f6" font-weight="600" class="r-node">🔒 .git/</text>
-
-          <!-- History panel -->
-          <rect x="230" y="14" width="218" height="152" rx="10" fill="rgba(0,0,0,0.3)" stroke="rgba(59,130,246,0.15)" stroke-width="1.5"/>
-          <text x="244" y="34" font-family="JetBrains Mono,monospace" font-size="8" fill="rgba(59,130,246,0.5)" letter-spacing="1.5">COMMIT LOG</text>
-
-          <circle cx="252" cy="60" r="7" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" class="r-commit"/>
-          <text x="266" y="57" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#93c5fd" class="r-commit">a1b2c3d</text>
-          <text x="266" y="69" font-family="Inter,sans-serif" font-size="9" fill="#60a5fa" class="r-commit">Initial commit</text>
-          <line x1="252" y1="67" x2="252" y2="86" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
-
-          <circle cx="252" cy="93" r="7" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" class="r-commit"/>
-          <text x="266" y="90" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#93c5fd" class="r-commit">e4f5g6h</text>
-          <text x="266" y="102" font-family="Inter,sans-serif" font-size="9" fill="#60a5fa" class="r-commit">Add README</text>
-          <line x1="252" y1="100" x2="252" y2="119" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
-
-          <circle cx="252" cy="126" r="7" fill="rgba(59,130,246,0.25)" stroke="#3b82f6" stroke-width="2" class="r-commit"/>
-          <text x="266" y="123" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#93c5fd" class="r-commit">i7j8k9l</text>
-          <text x="266" y="135" font-family="Inter,sans-serif" font-size="9" fill="#60a5fa" class="r-commit">Fix typo</text>
-          <rect x="376" y="118" width="54" height="16" rx="4" fill="rgba(59,130,246,0.28)" stroke="rgba(59,130,246,0.5)" stroke-width="1" class="r-commit"/>
-          <text x="403" y="130" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#93c5fd" class="r-commit">HEAD</text>
-        </svg>
-      </div>
       <div class="cmd"><span>git init</span></div>
+    </div>
+    <div class="stage">
+      <svg id="svg-repo" viewBox="0 0 460 180">
+        <!-- File tree -->
+        <text x="20" y="26" font-family="JetBrains Mono,monospace" font-size="11" fill="#60a5fa" font-weight="600">📁 my-project/</text>
+        <line x1="32" y1="30" x2="32" y2="155" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
+
+        <line x1="32" y1="58" x2="52" y2="58" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
+        <rect x="52" y="44" width="120" height="28" rx="6" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.22)" stroke-width="1.5" class="r-node"/>
+        <text x="68" y="62" font-family="JetBrains Mono,monospace" font-size="10" fill="#93c5fd" class="r-node">📁 src/</text>
+
+        <line x1="32" y1="96" x2="52" y2="96" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
+        <rect x="52" y="82" width="130" height="28" rx="6" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.22)" stroke-width="1.5" class="r-node"/>
+        <text x="68" y="100" font-family="JetBrains Mono,monospace" font-size="10" fill="#93c5fd" class="r-node">📄 README.md</text>
+
+        <line x1="32" y1="134" x2="52" y2="134" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
+        <rect x="52" y="120" width="110" height="28" rx="6" fill="rgba(59,130,246,0.14)" stroke="rgba(59,130,246,0.45)" stroke-width="1.5" class="r-node"/>
+        <text x="68" y="138" font-family="JetBrains Mono,monospace" font-size="10" fill="#3b82f6" font-weight="600" class="r-node">🔒 .git/</text>
+
+        <!-- History panel -->
+        <rect x="230" y="14" width="218" height="152" rx="10" fill="rgba(0,0,0,0.3)" stroke="rgba(59,130,246,0.15)" stroke-width="1.5"/>
+        <text x="244" y="34" font-family="JetBrains Mono,monospace" font-size="8" fill="rgba(59,130,246,0.5)" letter-spacing="1.5">COMMIT LOG</text>
+
+        <circle cx="252" cy="60" r="7" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" class="r-commit"/>
+        <text x="266" y="57" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#93c5fd" class="r-commit">a1b2c3d</text>
+        <text x="266" y="69" font-family="Inter,sans-serif" font-size="9" fill="#60a5fa" class="r-commit">Initial commit</text>
+        <line x1="252" y1="67" x2="252" y2="86" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
+
+        <circle cx="252" cy="93" r="7" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" class="r-commit"/>
+        <text x="266" y="90" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#93c5fd" class="r-commit">e4f5g6h</text>
+        <text x="266" y="102" font-family="Inter,sans-serif" font-size="9" fill="#60a5fa" class="r-commit">Add README</text>
+        <line x1="252" y1="100" x2="252" y2="119" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
+
+        <circle cx="252" cy="126" r="7" fill="rgba(59,130,246,0.25)" stroke="#3b82f6" stroke-width="2" class="r-commit"/>
+        <text x="266" y="123" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#93c5fd" class="r-commit">i7j8k9l</text>
+        <text x="266" y="135" font-family="Inter,sans-serif" font-size="9" fill="#60a5fa" class="r-commit">Fix typo</text>
+        <rect x="376" y="118" width="54" height="16" rx="4" fill="rgba(59,130,246,0.28)" stroke="rgba(59,130,246,0.5)" stroke-width="1" class="r-commit"/>
+        <text x="403" y="130" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#93c5fd" class="r-commit">HEAD</text>
+      </svg>
+    </div>
+    <div class="concept-body">
+      <p class="desc">The project folder Git tracks. Stores the complete version history, all branches, commits, and metadata in a hidden <code style="font-family:monospace;font-size:0.8em;background:rgba(255,255,255,0.07);padding:1px 5px;border-radius:4px">.git</code> directory.</p>
       <div class="tips">
         <p class="tips-title">Best Practices</p>
         <ul>
@@ -244,63 +262,67 @@
           <li>Set a clear branch strategy from the start</li>
         </ul>
       </div>
-    </article>
+    </div>
+  </section>
 
-    <!-- ── 2. Commit ── -->
-    <article class="card">
-      <div class="card-top">
+  <!-- ── 2. Commit ── -->
+  <section class="concept">
+    <div class="concept-header">
+      <div class="concept-title">
         <div class="card-icon t-purple">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg>
         </div>
         <h3>Commit</h3>
         <span class="badge t-purple">Snapshot</span>
       </div>
-      <p class="desc">A permanent snapshot of staged changes saved with a message. Each commit links to its parent, forming an unbreakable chain of project history.</p>
-      <div class="scene">
-        <svg id="svg-commit" viewBox="0 0 460 180">
-          <defs>
-            <marker id="m-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-              <path d="M0 0 L10 5 L0 10z" fill="rgba(139,92,246,0.7)"/>
-            </marker>
-          </defs>
-          <!-- timeline -->
-          <line x1="30" y1="90" x2="430" y2="90" stroke="rgba(139,92,246,0.15)" stroke-width="2"/>
-
-          <circle cx="80" cy="90" r="11" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="2" class="cm-dot"/>
-          <text x="80" y="94" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#a78bfa" class="cm-dot">c1</text>
-          <rect x="54" y="48" width="52" height="30" rx="6" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.3)" stroke-width="1.5" class="cm-label"/>
-          <line x1="80" y1="78" x2="80" y2="48" stroke="rgba(139,92,246,0.25)" stroke-width="1.5" class="cm-label"/>
-          <text x="80" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#c4b5fd" class="cm-label">a1b2c3</text>
-          <text x="80" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#a78bfa" class="cm-label">init</text>
-
-          <circle cx="190" cy="90" r="11" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="2" class="cm-dot"/>
-          <text x="190" y="94" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#a78bfa" class="cm-dot">c2</text>
-          <rect x="164" y="48" width="52" height="30" rx="6" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.3)" stroke-width="1.5" class="cm-label"/>
-          <line x1="190" y1="78" x2="190" y2="48" stroke="rgba(139,92,246,0.25)" stroke-width="1.5" class="cm-label"/>
-          <text x="190" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#c4b5fd" class="cm-label">d4e5f6</text>
-          <text x="190" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#a78bfa" class="cm-label">readme</text>
-
-          <circle cx="300" cy="90" r="11" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="2" class="cm-dot"/>
-          <text x="300" y="94" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#a78bfa" class="cm-dot">c3</text>
-          <rect x="274" y="48" width="52" height="30" rx="6" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.3)" stroke-width="1.5" class="cm-label"/>
-          <line x1="300" y1="78" x2="300" y2="48" stroke="rgba(139,92,246,0.25)" stroke-width="1.5" class="cm-label"/>
-          <text x="300" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#c4b5fd" class="cm-label">g7h8i9</text>
-          <text x="300" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#a78bfa" class="cm-label">fix</text>
-
-          <!-- New HEAD commit -->
-          <circle cx="400" cy="90" r="13" fill="rgba(139,92,246,0.3)" stroke="#8b5cf6" stroke-width="2.5" id="cm-new"/>
-          <text x="400" y="94" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#c4b5fd" id="cm-new">c4</text>
-          <rect x="370" y="40" width="60" height="34" rx="6" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="1.5" id="cm-new-label"/>
-          <line x1="400" y1="76" x2="400" y2="40" stroke="rgba(139,92,246,0.4)" stroke-width="1.5" id="cm-new-vline"/>
-          <text x="400" y="55" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#c4b5fd" id="cm-new-label">j0k1l2</text>
-          <text x="400" y="67" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#c4b5fd" font-weight="600" id="cm-new-label">feature</text>
-          <!-- HEAD tag -->
-          <rect x="366" y="112" width="68" height="18" rx="5" fill="rgba(139,92,246,0.28)" stroke="#8b5cf6" stroke-width="1.5" id="cm-head"/>
-          <text x="400" y="125" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#c4b5fd" id="cm-head">HEAD</text>
-          <line x1="400" y1="112" x2="400" y2="103" stroke="rgba(139,92,246,0.5)" stroke-width="1.5" id="cm-head"/>
-        </svg>
-      </div>
       <div class="cmd"><span>git commit -m "feat: add login"</span></div>
+    </div>
+    <div class="stage">
+      <svg id="svg-commit" viewBox="0 0 460 180">
+        <defs>
+          <marker id="m-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <path d="M0 0 L10 5 L0 10z" fill="rgba(139,92,246,0.7)"/>
+          </marker>
+        </defs>
+        <!-- timeline -->
+        <line x1="30" y1="90" x2="430" y2="90" stroke="rgba(139,92,246,0.15)" stroke-width="2"/>
+
+        <circle cx="80" cy="90" r="11" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="2" class="cm-dot"/>
+        <text x="80" y="94" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#a78bfa" class="cm-dot">c1</text>
+        <rect x="54" y="48" width="52" height="30" rx="6" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.3)" stroke-width="1.5" class="cm-label"/>
+        <line x1="80" y1="78" x2="80" y2="48" stroke="rgba(139,92,246,0.25)" stroke-width="1.5" class="cm-label"/>
+        <text x="80" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#c4b5fd" class="cm-label">a1b2c3</text>
+        <text x="80" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#a78bfa" class="cm-label">init</text>
+
+        <circle cx="190" cy="90" r="11" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="2" class="cm-dot"/>
+        <text x="190" y="94" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#a78bfa" class="cm-dot">c2</text>
+        <rect x="164" y="48" width="52" height="30" rx="6" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.3)" stroke-width="1.5" class="cm-label"/>
+        <line x1="190" y1="78" x2="190" y2="48" stroke="rgba(139,92,246,0.25)" stroke-width="1.5" class="cm-label"/>
+        <text x="190" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#c4b5fd" class="cm-label">d4e5f6</text>
+        <text x="190" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#a78bfa" class="cm-label">readme</text>
+
+        <circle cx="300" cy="90" r="11" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="2" class="cm-dot"/>
+        <text x="300" y="94" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#a78bfa" class="cm-dot">c3</text>
+        <rect x="274" y="48" width="52" height="30" rx="6" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.3)" stroke-width="1.5" class="cm-label"/>
+        <line x1="300" y1="78" x2="300" y2="48" stroke="rgba(139,92,246,0.25)" stroke-width="1.5" class="cm-label"/>
+        <text x="300" y="62" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#c4b5fd" class="cm-label">g7h8i9</text>
+        <text x="300" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#a78bfa" class="cm-label">fix</text>
+
+        <!-- New HEAD commit -->
+        <circle cx="400" cy="90" r="13" fill="rgba(139,92,246,0.3)" stroke="#8b5cf6" stroke-width="2.5" id="cm-new"/>
+        <text x="400" y="94" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#c4b5fd" id="cm-new">c4</text>
+        <rect x="370" y="40" width="60" height="34" rx="6" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="1.5" id="cm-new-label"/>
+        <line x1="400" y1="76" x2="400" y2="40" stroke="rgba(139,92,246,0.4)" stroke-width="1.5" id="cm-new-vline"/>
+        <text x="400" y="55" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#c4b5fd" id="cm-new-label">j0k1l2</text>
+        <text x="400" y="67" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#c4b5fd" font-weight="600" id="cm-new-label">feature</text>
+        <!-- HEAD tag -->
+        <rect x="366" y="112" width="68" height="18" rx="5" fill="rgba(139,92,246,0.28)" stroke="#8b5cf6" stroke-width="1.5" id="cm-head"/>
+        <text x="400" y="125" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#c4b5fd" id="cm-head">HEAD</text>
+        <line x1="400" y1="112" x2="400" y2="103" stroke="rgba(139,92,246,0.5)" stroke-width="1.5" id="cm-head"/>
+      </svg>
+    </div>
+    <div class="concept-body">
+      <p class="desc">A permanent snapshot of staged changes saved with a message. Each commit links to its parent, forming an unbreakable chain of project history.</p>
       <div class="tips">
         <p class="tips-title">Best Practices</p>
         <ul>
@@ -309,50 +331,54 @@
           <li>Stage only related files per commit</li>
         </ul>
       </div>
-    </article>
+    </div>
+  </section>
 
-    <!-- ── 3. Branch ── -->
-    <article class="card">
-      <div class="card-top">
+  <!-- ── 3. Branch ── -->
+  <section class="concept">
+    <div class="concept-header">
+      <div class="concept-title">
         <div class="card-icon t-green">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
         </div>
         <h3>Branch</h3>
         <span class="badge t-green">Parallel</span>
       </div>
-      <p class="desc">A lightweight pointer to a commit. Branches isolate your work so features, bug fixes, and experiments never interfere with each other.</p>
-      <div class="scene">
-        <svg id="svg-branch" viewBox="0 0 460 180">
-          <defs>
-            <marker id="m-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-              <path d="M0 0 L10 5 L0 10z" fill="rgba(16,185,129,0.8)"/>
-            </marker>
-          </defs>
-          <!-- main line -->
-          <line x1="20" y1="130" x2="440" y2="130" stroke="rgba(16,185,129,0.18)" stroke-width="2"/>
-          <circle cx="60" cy="130" r="10" fill="rgba(16,185,129,0.18)" stroke="#10b981" stroke-width="2" class="br-main"/>
-          <circle cx="140" cy="130" r="10" fill="rgba(16,185,129,0.18)" stroke="#10b981" stroke-width="2" class="br-main"/>
-          <circle cx="220" cy="130" r="10" fill="rgba(16,185,129,0.18)" stroke="#10b981" stroke-width="2" class="br-main"/>
-          <circle cx="400" cy="130" r="10" fill="rgba(16,185,129,0.28)" stroke="#10b981" stroke-width="2.5" class="br-main"/>
-          <rect x="26" y="146" width="68" height="17" rx="4" fill="rgba(16,185,129,0.18)" stroke="rgba(16,185,129,0.35)" stroke-width="1" class="br-main"/>
-          <text x="60" y="158" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#34d399" class="br-main">main</text>
-
-          <!-- feature branch -->
-          <path id="br-curve1" d="M220 120 C248 95 272 65 300 55" fill="none" stroke="rgba(16,185,129,0.3)" stroke-width="2"/>
-          <circle cx="300" cy="55" r="9" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.7)" stroke-width="2" class="br-feat"/>
-          <line x1="309" y1="55" x2="371" y2="55" stroke="rgba(16,185,129,0.28)" stroke-width="2" class="br-feat"/>
-          <circle cx="371" cy="55" r="9" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.7)" stroke-width="2" class="br-feat"/>
-          <rect x="282" y="26" width="108" height="17" rx="4" fill="rgba(16,185,129,0.13)" stroke="rgba(16,185,129,0.3)" stroke-width="1" class="br-feat"/>
-          <text x="336" y="38" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#34d399" class="br-feat">feature/auth</text>
-
-          <!-- hotfix branch -->
-          <path id="br-curve2" d="M140 140 C160 152 200 162 310 162" fill="none" stroke="rgba(16,185,129,0.18)" stroke-width="1.5"/>
-          <circle cx="310" cy="162" r="8" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.45)" stroke-width="1.5" class="br-hot"/>
-          <rect x="270" y="172" width="80" height="15" rx="4" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.2)" stroke-width="1" class="br-hot"/>
-          <text x="310" y="183" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(52,211,153,0.7)" class="br-hot">fix/bug-99</text>
-        </svg>
-      </div>
       <div class="cmd"><span>git checkout -b feature/auth</span></div>
+    </div>
+    <div class="stage">
+      <svg id="svg-branch" viewBox="0 0 460 180">
+        <defs>
+          <marker id="m-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <path d="M0 0 L10 5 L0 10z" fill="rgba(16,185,129,0.8)"/>
+          </marker>
+        </defs>
+        <!-- main line -->
+        <line x1="20" y1="130" x2="440" y2="130" stroke="rgba(16,185,129,0.18)" stroke-width="2"/>
+        <circle cx="60" cy="130" r="10" fill="rgba(16,185,129,0.18)" stroke="#10b981" stroke-width="2" class="br-main"/>
+        <circle cx="140" cy="130" r="10" fill="rgba(16,185,129,0.18)" stroke="#10b981" stroke-width="2" class="br-main"/>
+        <circle cx="220" cy="130" r="10" fill="rgba(16,185,129,0.18)" stroke="#10b981" stroke-width="2" class="br-main"/>
+        <circle cx="400" cy="130" r="10" fill="rgba(16,185,129,0.28)" stroke="#10b981" stroke-width="2.5" class="br-main"/>
+        <rect x="26" y="146" width="68" height="17" rx="4" fill="rgba(16,185,129,0.18)" stroke="rgba(16,185,129,0.35)" stroke-width="1" class="br-main"/>
+        <text x="60" y="158" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#34d399" class="br-main">main</text>
+
+        <!-- feature branch -->
+        <path id="br-curve1" d="M220 120 C248 95 272 65 300 55" fill="none" stroke="rgba(16,185,129,0.3)" stroke-width="2"/>
+        <circle cx="300" cy="55" r="9" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.7)" stroke-width="2" class="br-feat"/>
+        <line x1="309" y1="55" x2="371" y2="55" stroke="rgba(16,185,129,0.28)" stroke-width="2" class="br-feat"/>
+        <circle cx="371" cy="55" r="9" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.7)" stroke-width="2" class="br-feat"/>
+        <rect x="282" y="26" width="108" height="17" rx="4" fill="rgba(16,185,129,0.13)" stroke="rgba(16,185,129,0.3)" stroke-width="1" class="br-feat"/>
+        <text x="336" y="38" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#34d399" class="br-feat">feature/auth</text>
+
+        <!-- hotfix branch -->
+        <path id="br-curve2" d="M140 140 C160 152 200 162 310 162" fill="none" stroke="rgba(16,185,129,0.18)" stroke-width="1.5"/>
+        <circle cx="310" cy="162" r="8" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.45)" stroke-width="1.5" class="br-hot"/>
+        <rect x="270" y="172" width="80" height="15" rx="4" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.2)" stroke-width="1" class="br-hot"/>
+        <text x="310" y="183" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(52,211,153,0.7)" class="br-hot">fix/bug-99</text>
+      </svg>
+    </div>
+    <div class="concept-body">
+      <p class="desc">A lightweight pointer to a commit. Branches isolate your work so features, bug fixes, and experiments never interfere with each other.</p>
       <div class="tips">
         <p class="tips-title">Best Practices</p>
         <ul>
@@ -361,45 +387,49 @@
           <li>Sync with main regularly</li>
         </ul>
       </div>
-    </article>
+    </div>
+  </section>
 
-    <!-- ── 4. Merge ── -->
-    <article class="card">
-      <div class="card-top">
+  <!-- ── 4. Merge ── -->
+  <section class="concept">
+    <div class="concept-header">
+      <div class="concept-title">
         <div class="card-icon t-orange">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>
         </div>
         <h3>Merge</h3>
         <span class="badge t-orange">Combine</span>
       </div>
-      <p class="desc">Integrates changes from one branch into another, creating a merge commit that preserves the full history of both lines of development.</p>
-      <div class="scene">
-        <svg id="svg-merge" viewBox="0 0 460 180">
-          <!-- main base -->
-          <line x1="20" y1="140" x2="440" y2="140" stroke="rgba(245,158,11,0.15)" stroke-width="2"/>
-          <circle cx="60" cy="140" r="10" fill="rgba(245,158,11,0.18)" stroke="#f59e0b" stroke-width="2" class="mg-base"/>
-          <circle cx="140" cy="140" r="10" fill="rgba(245,158,11,0.18)" stroke="#f59e0b" stroke-width="2" class="mg-base"/>
-          <rect x="104" y="154" width="72" height="17" rx="4" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.35)" stroke-width="1" class="mg-base"/>
-          <text x="140" y="166" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#fbbf24" class="mg-base">main</text>
-
-          <!-- feature -->
-          <path id="mg-up" d="M140 130 C175 100 215 68 255 58" fill="none" stroke="rgba(245,158,11,0.3)" stroke-width="2"/>
-          <circle cx="255" cy="58" r="10" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.7)" stroke-width="2" class="mg-feat"/>
-          <line x1="265" y1="58" x2="335" y2="58" stroke="rgba(245,158,11,0.28)" stroke-width="2" class="mg-feat"/>
-          <circle cx="335" cy="58" r="10" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.7)" stroke-width="2" class="mg-feat"/>
-          <rect x="225" y="28" width="80" height="17" rx="4" fill="rgba(245,158,11,0.12)" stroke="rgba(245,158,11,0.28)" stroke-width="1" class="mg-feat"/>
-          <text x="265" y="40" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#fbbf24" class="mg-feat">feature/x</text>
-
-          <!-- converge -->
-          <path id="mg-down" d="M335 68 C360 100 385 128 400 140" fill="none" stroke="rgba(245,158,11,0.38)" stroke-width="2"/>
-          <!-- merge commit -->
-          <circle cx="400" cy="140" r="13" fill="rgba(245,158,11,0.28)" stroke="#f59e0b" stroke-width="2.5" id="mg-mc"/>
-          <text x="400" y="144" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#fbbf24" id="mg-mc">merge</text>
-          <rect x="364" y="155" width="72" height="17" rx="4" fill="rgba(245,158,11,0.22)" stroke="rgba(245,158,11,0.45)" stroke-width="1" id="mg-mc"/>
-          <text x="400" y="167" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#fbbf24" id="mg-mc">HEAD</text>
-        </svg>
-      </div>
       <div class="cmd"><span>git merge feature/x</span></div>
+    </div>
+    <div class="stage">
+      <svg id="svg-merge" viewBox="0 0 460 180">
+        <!-- main base -->
+        <line x1="20" y1="140" x2="440" y2="140" stroke="rgba(245,158,11,0.15)" stroke-width="2"/>
+        <circle cx="60" cy="140" r="10" fill="rgba(245,158,11,0.18)" stroke="#f59e0b" stroke-width="2" class="mg-base"/>
+        <circle cx="140" cy="140" r="10" fill="rgba(245,158,11,0.18)" stroke="#f59e0b" stroke-width="2" class="mg-base"/>
+        <rect x="104" y="154" width="72" height="17" rx="4" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.35)" stroke-width="1" class="mg-base"/>
+        <text x="140" y="166" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#fbbf24" class="mg-base">main</text>
+
+        <!-- feature -->
+        <path id="mg-up" d="M140 130 C175 100 215 68 255 58" fill="none" stroke="rgba(245,158,11,0.3)" stroke-width="2"/>
+        <circle cx="255" cy="58" r="10" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.7)" stroke-width="2" class="mg-feat"/>
+        <line x1="265" y1="58" x2="335" y2="58" stroke="rgba(245,158,11,0.28)" stroke-width="2" class="mg-feat"/>
+        <circle cx="335" cy="58" r="10" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.7)" stroke-width="2" class="mg-feat"/>
+        <rect x="225" y="28" width="80" height="17" rx="4" fill="rgba(245,158,11,0.12)" stroke="rgba(245,158,11,0.28)" stroke-width="1" class="mg-feat"/>
+        <text x="265" y="40" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#fbbf24" class="mg-feat">feature/x</text>
+
+        <!-- converge -->
+        <path id="mg-down" d="M335 68 C360 100 385 128 400 140" fill="none" stroke="rgba(245,158,11,0.38)" stroke-width="2"/>
+        <!-- merge commit -->
+        <circle cx="400" cy="140" r="13" fill="rgba(245,158,11,0.28)" stroke="#f59e0b" stroke-width="2.5" id="mg-mc"/>
+        <text x="400" y="144" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#fbbf24" id="mg-mc">merge</text>
+        <rect x="364" y="155" width="72" height="17" rx="4" fill="rgba(245,158,11,0.22)" stroke="rgba(245,158,11,0.45)" stroke-width="1" id="mg-mc"/>
+        <text x="400" y="167" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#fbbf24" id="mg-mc">HEAD</text>
+      </svg>
+    </div>
+    <div class="concept-body">
+      <p class="desc">Integrates changes from one branch into another, creating a merge commit that preserves the full history of both lines of development.</p>
       <div class="tips">
         <p class="tips-title">Best Practices</p>
         <ul>
@@ -408,64 +438,68 @@
           <li>Always review changes before merging</li>
         </ul>
       </div>
-    </article>
+    </div>
+  </section>
 
-    <!-- ── 5. Rebase ── -->
-    <article class="card">
-      <div class="card-top">
+  <!-- ── 5. Rebase ── -->
+  <section class="concept">
+    <div class="concept-header">
+      <div class="concept-title">
         <div class="card-icon t-pink">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
         </div>
         <h3>Rebase</h3>
         <span class="badge t-pink">Rewrite</span>
       </div>
-      <p class="desc">Replays your branch's commits onto a new base, rewriting history so it looks like your work always started from the latest main.</p>
-      <div class="scene">
-        <svg id="svg-rebase" viewBox="0 0 460 180">
-          <!-- BEFORE label -->
-          <text x="14" y="20" font-family="Inter,sans-serif" font-size="9" fill="rgba(236,72,153,0.45)" font-weight="700" letter-spacing="1.2">BEFORE</text>
-          <!-- before main -->
-          <line x1="20" y1="65" x2="210" y2="65" stroke="rgba(236,72,153,0.15)" stroke-width="1.5"/>
-          <circle cx="50" cy="65" r="8" fill="rgba(236,72,153,0.15)" stroke="rgba(236,72,153,0.5)" stroke-width="1.5" class="rb-bm"/>
-          <circle cx="110" cy="65" r="8" fill="rgba(236,72,153,0.15)" stroke="rgba(236,72,153,0.5)" stroke-width="1.5" class="rb-bm"/>
-          <circle cx="170" cy="65" r="8" fill="rgba(236,72,153,0.15)" stroke="rgba(236,72,153,0.5)" stroke-width="1.5" class="rb-bm"/>
-          <text x="50" y="82" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(236,72,153,0.55)" class="rb-bm">A</text>
-          <text x="110" y="82" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(236,72,153,0.55)" class="rb-bm">B</text>
-          <text x="170" y="82" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(236,72,153,0.55)" class="rb-bm">C</text>
-          <text x="120" y="58" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(236,72,153,0.4)">main</text>
-          <!-- before feature (forked at A) -->
-          <path d="M50 57 C68 40 88 32 108 32" fill="none" stroke="rgba(236,72,153,0.2)" stroke-width="1.5" class="rb-bm"/>
-          <circle cx="108" cy="32" r="7" fill="rgba(236,72,153,0.1)" stroke="rgba(236,72,153,0.38)" stroke-width="1.5" class="rb-bm"/>
-          <circle cx="168" cy="32" r="7" fill="rgba(236,72,153,0.1)" stroke="rgba(236,72,153,0.38)" stroke-width="1.5" class="rb-bm"/>
-          <line x1="115" y1="32" x2="161" y2="32" stroke="rgba(236,72,153,0.2)" stroke-width="1.5" class="rb-bm"/>
-          <text x="108" y="20" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(236,72,153,0.45)" class="rb-bm">X</text>
-          <text x="168" y="20" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(236,72,153,0.45)" class="rb-bm">Y</text>
-
-          <!-- divider -->
-          <line x1="220" y1="14" x2="220" y2="166" stroke="rgba(236,72,153,0.1)" stroke-width="1" stroke-dasharray="3 3"/>
-          <text x="224" y="95" font-family="Inter,sans-serif" font-size="18" fill="rgba(236,72,153,0.35)" id="rb-arrow">→</text>
-
-          <!-- AFTER label -->
-          <text x="245" y="20" font-family="Inter,sans-serif" font-size="9" fill="rgba(236,72,153,0.65)" font-weight="700" letter-spacing="1.2">AFTER</text>
-          <!-- after: linear history -->
-          <line x1="240" y1="110" x2="450" y2="110" stroke="rgba(236,72,153,0.2)" stroke-width="1.5" class="rb-am"/>
-          <circle cx="268" cy="110" r="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1.5" class="rb-am"/>
-          <circle cx="318" cy="110" r="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1.5" class="rb-am"/>
-          <circle cx="368" cy="110" r="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1.5" class="rb-am"/>
-          <text x="268" y="126" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ec4899" class="rb-am">A</text>
-          <text x="318" y="126" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ec4899" class="rb-am">B</text>
-          <text x="368" y="126" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ec4899" class="rb-am">C</text>
-          <!-- rebased commits -->
-          <circle cx="410" cy="110" r="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1.5" class="rb-af"/>
-          <circle cx="444" cy="80" r="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1.5" class="rb-af"/>
-          <path d="M418 104 L437 86" fill="none" stroke="rgba(236,72,153,0.3)" stroke-width="1.5" class="rb-af"/>
-          <text x="410" y="126" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ec4899" class="rb-af">X'</text>
-          <text x="444" y="68" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ec4899" class="rb-af">Y'</text>
-          <rect x="378" y="54" width="56" height="15" rx="4" fill="rgba(236,72,153,0.14)" stroke="rgba(236,72,153,0.3)" stroke-width="1" class="rb-af"/>
-          <text x="406" y="65" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#f472b6" class="rb-af">feature</text>
-        </svg>
-      </div>
       <div class="cmd"><span>git rebase main</span></div>
+    </div>
+    <div class="stage">
+      <svg id="svg-rebase" viewBox="0 0 460 180">
+        <!-- BEFORE label -->
+        <text x="14" y="20" font-family="Inter,sans-serif" font-size="9" fill="rgba(236,72,153,0.45)" font-weight="700" letter-spacing="1.2">BEFORE</text>
+        <!-- before main -->
+        <line x1="20" y1="65" x2="210" y2="65" stroke="rgba(236,72,153,0.15)" stroke-width="1.5"/>
+        <circle cx="50" cy="65" r="8" fill="rgba(236,72,153,0.15)" stroke="rgba(236,72,153,0.5)" stroke-width="1.5" class="rb-bm"/>
+        <circle cx="110" cy="65" r="8" fill="rgba(236,72,153,0.15)" stroke="rgba(236,72,153,0.5)" stroke-width="1.5" class="rb-bm"/>
+        <circle cx="170" cy="65" r="8" fill="rgba(236,72,153,0.15)" stroke="rgba(236,72,153,0.5)" stroke-width="1.5" class="rb-bm"/>
+        <text x="50" y="82" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(236,72,153,0.55)" class="rb-bm">A</text>
+        <text x="110" y="82" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(236,72,153,0.55)" class="rb-bm">B</text>
+        <text x="170" y="82" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(236,72,153,0.55)" class="rb-bm">C</text>
+        <text x="120" y="58" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(236,72,153,0.4)">main</text>
+        <!-- before feature (forked at A) -->
+        <path d="M50 57 C68 40 88 32 108 32" fill="none" stroke="rgba(236,72,153,0.2)" stroke-width="1.5" class="rb-bm"/>
+        <circle cx="108" cy="32" r="7" fill="rgba(236,72,153,0.1)" stroke="rgba(236,72,153,0.38)" stroke-width="1.5" class="rb-bm"/>
+        <circle cx="168" cy="32" r="7" fill="rgba(236,72,153,0.1)" stroke="rgba(236,72,153,0.38)" stroke-width="1.5" class="rb-bm"/>
+        <line x1="115" y1="32" x2="161" y2="32" stroke="rgba(236,72,153,0.2)" stroke-width="1.5" class="rb-bm"/>
+        <text x="108" y="20" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(236,72,153,0.45)" class="rb-bm">X</text>
+        <text x="168" y="20" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(236,72,153,0.45)" class="rb-bm">Y</text>
+
+        <!-- divider -->
+        <line x1="220" y1="14" x2="220" y2="166" stroke="rgba(236,72,153,0.1)" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="224" y="95" font-family="Inter,sans-serif" font-size="18" fill="rgba(236,72,153,0.35)" id="rb-arrow">→</text>
+
+        <!-- AFTER label -->
+        <text x="245" y="20" font-family="Inter,sans-serif" font-size="9" fill="rgba(236,72,153,0.65)" font-weight="700" letter-spacing="1.2">AFTER</text>
+        <!-- after: linear history -->
+        <line x1="240" y1="110" x2="450" y2="110" stroke="rgba(236,72,153,0.2)" stroke-width="1.5" class="rb-am"/>
+        <circle cx="268" cy="110" r="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1.5" class="rb-am"/>
+        <circle cx="318" cy="110" r="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1.5" class="rb-am"/>
+        <circle cx="368" cy="110" r="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1.5" class="rb-am"/>
+        <text x="268" y="126" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ec4899" class="rb-am">A</text>
+        <text x="318" y="126" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ec4899" class="rb-am">B</text>
+        <text x="368" y="126" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ec4899" class="rb-am">C</text>
+        <!-- rebased commits -->
+        <circle cx="410" cy="110" r="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1.5" class="rb-af"/>
+        <circle cx="444" cy="80" r="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1.5" class="rb-af"/>
+        <path d="M418 104 L437 86" fill="none" stroke="rgba(236,72,153,0.3)" stroke-width="1.5" class="rb-af"/>
+        <text x="410" y="126" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ec4899" class="rb-af">X'</text>
+        <text x="444" y="68" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ec4899" class="rb-af">Y'</text>
+        <rect x="378" y="54" width="56" height="15" rx="4" fill="rgba(236,72,153,0.14)" stroke="rgba(236,72,153,0.3)" stroke-width="1" class="rb-af"/>
+        <text x="406" y="65" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#f472b6" class="rb-af">feature</text>
+      </svg>
+    </div>
+    <div class="concept-body">
+      <p class="desc">Replays your branch's commits onto a new base, rewriting history so it looks like your work always started from the latest main.</p>
       <div class="tips">
         <p class="tips-title">Best Practices</p>
         <ul>
@@ -474,47 +508,51 @@
           <li>Resolve conflicts carefully at each replayed commit</li>
         </ul>
       </div>
-    </article>
+    </div>
+  </section>
 
-    <!-- ── 6. Push / Pull ── -->
-    <article class="card">
-      <div class="card-top">
+  <!-- ── 6. Push / Pull ── -->
+  <section class="concept">
+    <div class="concept-header">
+      <div class="concept-title">
         <div class="card-icon t-cyan">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg>
         </div>
         <h3>Push / Pull</h3>
         <span class="badge t-cyan">Sync</span>
       </div>
-      <p class="desc">Push uploads local commits to the remote repository. Pull downloads remote changes and merges them into your current branch.</p>
-      <div class="scene">
-        <svg id="svg-pp" viewBox="0 0 460 180">
-          <!-- Local box -->
-          <rect x="20" y="40" width="160" height="100" rx="12" fill="rgba(34,211,238,0.05)" stroke="rgba(34,211,238,0.28)" stroke-width="1.5" id="pp-local"/>
-          <text x="100" y="66" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#67e8f9" font-weight="600">Local</text>
-          <circle cx="65" cy="108" r="9" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.5)" stroke-width="1.5"/>
-          <line x1="74" y1="108" x2="86" y2="108" stroke="rgba(34,211,238,0.28)" stroke-width="1.5"/>
-          <circle cx="95" cy="108" r="9" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.5)" stroke-width="1.5"/>
-          <line x1="104" y1="108" x2="116" y2="108" stroke="rgba(34,211,238,0.28)" stroke-width="1.5"/>
-          <circle cx="125" cy="108" r="9" fill="rgba(34,211,238,0.3)" stroke="#22d3ee" stroke-width="2"/>
-
-          <!-- Remote box -->
-          <rect x="280" y="40" width="160" height="100" rx="12" fill="rgba(34,211,238,0.05)" stroke="rgba(34,211,238,0.28)" stroke-width="1.5" id="pp-remote"/>
-          <text x="360" y="66" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#67e8f9" font-weight="600">Remote</text>
-          <circle cx="315" cy="108" r="9" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.5)" stroke-width="1.5"/>
-          <line x1="324" y1="108" x2="336" y2="108" stroke="rgba(34,211,238,0.28)" stroke-width="1.5"/>
-          <circle cx="345" cy="108" r="9" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.5)" stroke-width="1.5"/>
-
-          <!-- Push label -->
-          <text x="230" y="82" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(34,211,238,0.8)" font-weight="700" id="pp-push-lbl">push →</text>
-          <!-- Pull label -->
-          <text x="230" y="122" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(34,211,238,0.5)" font-weight="700" id="pp-pull-lbl">← pull</text>
-
-          <!-- Animated packets -->
-          <circle cx="180" cy="90" r="5" fill="#22d3ee" id="pp-pk1" opacity="0"/>
-          <circle cx="280" cy="118" r="5" fill="rgba(34,211,238,0.7)" id="pp-pk2" opacity="0"/>
-        </svg>
-      </div>
       <div class="cmd"><span>git push origin main</span></div>
+    </div>
+    <div class="stage">
+      <svg id="svg-pp" viewBox="0 0 460 180">
+        <!-- Local box -->
+        <rect x="20" y="40" width="160" height="100" rx="12" fill="rgba(34,211,238,0.05)" stroke="rgba(34,211,238,0.28)" stroke-width="1.5" id="pp-local"/>
+        <text x="100" y="66" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#67e8f9" font-weight="600">Local</text>
+        <circle cx="65" cy="108" r="9" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.5)" stroke-width="1.5"/>
+        <line x1="74" y1="108" x2="86" y2="108" stroke="rgba(34,211,238,0.28)" stroke-width="1.5"/>
+        <circle cx="95" cy="108" r="9" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.5)" stroke-width="1.5"/>
+        <line x1="104" y1="108" x2="116" y2="108" stroke="rgba(34,211,238,0.28)" stroke-width="1.5"/>
+        <circle cx="125" cy="108" r="9" fill="rgba(34,211,238,0.3)" stroke="#22d3ee" stroke-width="2"/>
+
+        <!-- Remote box -->
+        <rect x="280" y="40" width="160" height="100" rx="12" fill="rgba(34,211,238,0.05)" stroke="rgba(34,211,238,0.28)" stroke-width="1.5" id="pp-remote"/>
+        <text x="360" y="66" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#67e8f9" font-weight="600">Remote</text>
+        <circle cx="315" cy="108" r="9" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.5)" stroke-width="1.5"/>
+        <line x1="324" y1="108" x2="336" y2="108" stroke="rgba(34,211,238,0.28)" stroke-width="1.5"/>
+        <circle cx="345" cy="108" r="9" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.5)" stroke-width="1.5"/>
+
+        <!-- Push label -->
+        <text x="230" y="82" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(34,211,238,0.8)" font-weight="700" id="pp-push-lbl">push →</text>
+        <!-- Pull label -->
+        <text x="230" y="122" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(34,211,238,0.5)" font-weight="700" id="pp-pull-lbl">← pull</text>
+
+        <!-- Animated packets -->
+        <circle cx="180" cy="90" r="5" fill="#22d3ee" id="pp-pk1" opacity="0"/>
+        <circle cx="280" cy="118" r="5" fill="rgba(34,211,238,0.7)" id="pp-pk2" opacity="0"/>
+      </svg>
+    </div>
+    <div class="concept-body">
+      <p class="desc">Push uploads local commits to the remote repository. Pull downloads remote changes and merges them into your current branch.</p>
       <div class="tips">
         <p class="tips-title">Best Practices</p>
         <ul>
@@ -523,63 +561,67 @@
           <li>Never force-push to shared branches</li>
         </ul>
       </div>
-    </article>
+    </div>
+  </section>
 
-    <!-- ── 7. Pull Request ── -->
-    <article class="card">
-      <div class="card-top">
+  <!-- ── 7. Pull Request ── -->
+  <section class="concept">
+    <div class="concept-header">
+      <div class="concept-title">
         <div class="card-icon t-blue">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
         </div>
         <h3>Pull Request</h3>
         <span class="badge t-blue">PR</span>
       </div>
-      <p class="desc">A request to review and merge your branch into another. The hub of code collaboration — discussions, approvals, and CI checks happen here.</p>
-      <div class="scene">
-        <svg id="svg-pr" viewBox="0 0 460 180">
-          <defs>
-            <marker id="m-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-              <path d="M0 0 L10 5 L0 10z" fill="rgba(59,130,246,0.8)"/>
-            </marker>
-          </defs>
-          <!-- Feature branch box -->
-          <rect x="12" y="20" width="130" height="140" rx="11" fill="rgba(59,130,246,0.05)" stroke="rgba(59,130,246,0.22)" stroke-width="1.5" id="pr-feat"/>
-          <text x="77" y="42" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#93c5fd">feature/login</text>
-          <circle cx="77" cy="68" r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" id="pr-feat"/>
-          <line x1="77" y1="76" x2="77" y2="94" stroke="rgba(59,130,246,0.28)" stroke-width="1.5" id="pr-feat"/>
-          <circle cx="77" cy="102" r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" id="pr-feat"/>
-          <line x1="77" y1="110" x2="77" y2="128" stroke="rgba(59,130,246,0.28)" stroke-width="1.5" id="pr-feat"/>
-          <circle cx="77" cy="136" r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" id="pr-feat"/>
-
-          <!-- PR box -->
-          <rect x="174" y="44" width="112" height="92" rx="11" fill="rgba(59,130,246,0.09)" stroke="rgba(59,130,246,0.38)" stroke-width="2" id="pr-box"/>
-          <text x="230" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#93c5fd" font-weight="700" id="pr-box">PR #42</text>
-          <text x="188" y="86" font-family="Inter,sans-serif" font-size="11" fill="#22c55e" id="pr-box">✓</text>
-          <text x="202" y="86" font-family="Inter,sans-serif" font-size="9" fill="rgba(34,197,94,0.85)" id="pr-box">Approved</text>
-          <text x="188" y="103" font-family="Inter,sans-serif" font-size="11" fill="#f59e0b" id="pr-box">⊙</text>
-          <text x="202" y="103" font-family="Inter,sans-serif" font-size="9" fill="rgba(245,158,11,0.85)" id="pr-box">Comment</text>
-          <text x="188" y="120" font-family="Inter,sans-serif" font-size="11" fill="#3b82f6" id="pr-box">✓</text>
-          <text x="202" y="120" font-family="Inter,sans-serif" font-size="9" fill="rgba(59,130,246,0.85)" id="pr-box">CI passed</text>
-
-          <!-- Arrow feat → PR -->
-          <line x1="143" y1="90" x2="173" y2="90" stroke="rgba(59,130,246,0.5)" stroke-width="2" marker-end="url(#m-blue)" id="pr-a1"/>
-
-          <!-- Main branch box -->
-          <rect x="318" y="20" width="130" height="140" rx="11" fill="rgba(59,130,246,0.05)" stroke="rgba(59,130,246,0.22)" stroke-width="1.5" id="pr-main"/>
-          <text x="383" y="42" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#93c5fd" id="pr-main">main</text>
-          <circle cx="383" cy="68" r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" id="pr-main"/>
-          <line x1="383" y1="76" x2="383" y2="94" stroke="rgba(59,130,246,0.28)" stroke-width="1.5" id="pr-main"/>
-          <circle cx="383" cy="102" r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" id="pr-main"/>
-          <line x1="383" y1="110" x2="383" y2="128" stroke="rgba(59,130,246,0.28)" stroke-width="1.5" id="pr-main"/>
-          <!-- merge commit -->
-          <circle cx="383" cy="136" r="10" fill="rgba(59,130,246,0.32)" stroke="#3b82f6" stroke-width="2.5" id="pr-mc"/>
-
-          <!-- Arrow PR → main -->
-          <line x1="287" y1="90" x2="317" y2="90" stroke="rgba(59,130,246,0.4)" stroke-width="2" marker-end="url(#m-blue)" id="pr-a2" opacity="0.3"/>
-          <text x="302" y="82" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(59,130,246,0.45)" id="pr-a2" opacity="0.3">merge</text>
-        </svg>
-      </div>
       <div class="cmd"><span>gh pr create --title "Add login"</span></div>
+    </div>
+    <div class="stage">
+      <svg id="svg-pr" viewBox="0 0 460 180">
+        <defs>
+          <marker id="m-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <path d="M0 0 L10 5 L0 10z" fill="rgba(59,130,246,0.8)"/>
+          </marker>
+        </defs>
+        <!-- Feature branch box -->
+        <rect x="12" y="20" width="130" height="140" rx="11" fill="rgba(59,130,246,0.05)" stroke="rgba(59,130,246,0.22)" stroke-width="1.5" id="pr-feat"/>
+        <text x="77" y="42" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#93c5fd">feature/login</text>
+        <circle cx="77" cy="68" r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" id="pr-feat"/>
+        <line x1="77" y1="76" x2="77" y2="94" stroke="rgba(59,130,246,0.28)" stroke-width="1.5" id="pr-feat"/>
+        <circle cx="77" cy="102" r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" id="pr-feat"/>
+        <line x1="77" y1="110" x2="77" y2="128" stroke="rgba(59,130,246,0.28)" stroke-width="1.5" id="pr-feat"/>
+        <circle cx="77" cy="136" r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" id="pr-feat"/>
+
+        <!-- PR box -->
+        <rect x="174" y="44" width="112" height="92" rx="11" fill="rgba(59,130,246,0.09)" stroke="rgba(59,130,246,0.38)" stroke-width="2" id="pr-box"/>
+        <text x="230" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#93c5fd" font-weight="700" id="pr-box">PR #42</text>
+        <text x="188" y="86" font-family="Inter,sans-serif" font-size="11" fill="#22c55e" id="pr-box">✓</text>
+        <text x="202" y="86" font-family="Inter,sans-serif" font-size="9" fill="rgba(34,197,94,0.85)" id="pr-box">Approved</text>
+        <text x="188" y="103" font-family="Inter,sans-serif" font-size="11" fill="#f59e0b" id="pr-box">⊙</text>
+        <text x="202" y="103" font-family="Inter,sans-serif" font-size="9" fill="rgba(245,158,11,0.85)" id="pr-box">Comment</text>
+        <text x="188" y="120" font-family="Inter,sans-serif" font-size="11" fill="#3b82f6" id="pr-box">✓</text>
+        <text x="202" y="120" font-family="Inter,sans-serif" font-size="9" fill="rgba(59,130,246,0.85)" id="pr-box">CI passed</text>
+
+        <!-- Arrow feat → PR -->
+        <line x1="143" y1="90" x2="173" y2="90" stroke="rgba(59,130,246,0.5)" stroke-width="2" marker-end="url(#m-blue)" id="pr-a1"/>
+
+        <!-- Main branch box -->
+        <rect x="318" y="20" width="130" height="140" rx="11" fill="rgba(59,130,246,0.05)" stroke="rgba(59,130,246,0.22)" stroke-width="1.5" id="pr-main"/>
+        <text x="383" y="42" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#93c5fd" id="pr-main">main</text>
+        <circle cx="383" cy="68" r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" id="pr-main"/>
+        <line x1="383" y1="76" x2="383" y2="94" stroke="rgba(59,130,246,0.28)" stroke-width="1.5" id="pr-main"/>
+        <circle cx="383" cy="102" r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5" id="pr-main"/>
+        <line x1="383" y1="110" x2="383" y2="128" stroke="rgba(59,130,246,0.28)" stroke-width="1.5" id="pr-main"/>
+        <!-- merge commit -->
+        <circle cx="383" cy="136" r="10" fill="rgba(59,130,246,0.32)" stroke="#3b82f6" stroke-width="2.5" id="pr-mc"/>
+
+        <!-- Arrow PR → main -->
+        <line x1="287" y1="90" x2="317" y2="90" stroke="rgba(59,130,246,0.4)" stroke-width="2" marker-end="url(#m-blue)" id="pr-a2" opacity="0.3"/>
+        <text x="302" y="82" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(59,130,246,0.45)" id="pr-a2" opacity="0.3">merge</text>
+      </svg>
+    </div>
+    <div class="concept-body">
+      <p class="desc">A request to review and merge your branch into another. The hub of code collaboration — discussions, approvals, and CI checks happen here.</p>
       <div class="tips">
         <p class="tips-title">Best Practices</p>
         <ul>
@@ -588,51 +630,55 @@
           <li>Keep PRs small for faster, better reviews</li>
         </ul>
       </div>
-    </article>
+    </div>
+  </section>
 
-    <!-- ── 8. Merge Conflict ── -->
-    <article class="card">
-      <div class="card-top">
+  <!-- ── 8. Merge Conflict ── -->
+  <section class="concept">
+    <div class="concept-header">
+      <div class="concept-title">
         <div class="card-icon t-red">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         </div>
         <h3>Merge Conflict</h3>
         <span class="badge t-red">Conflict</span>
       </div>
-      <p class="desc">Occurs when two branches edit the same lines differently. Git pauses the merge and marks both versions — you decide what the final code looks like.</p>
-      <div class="scene">
-        <svg id="svg-cf" viewBox="0 0 460 180">
-          <!-- Branch A -->
-          <rect x="14" y="16" width="176" height="72" rx="9" fill="rgba(239,68,68,0.05)" stroke="rgba(239,68,68,0.25)" stroke-width="1.5" id="cf-a"/>
-          <text x="26" y="34" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(239,68,68,0.6)" id="cf-a">Branch A</text>
-          <rect x="26" y="40" width="150" height="18" rx="4" fill="rgba(59,130,246,0.12)" id="cf-a"/>
-          <text x="36" y="53" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#60a5fa" id="cf-a">color = "blue"</text>
-          <rect x="26" y="62" width="150" height="18" rx="4" fill="rgba(255,255,255,0.03)" id="cf-a"/>
-          <text x="36" y="75" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(255,255,255,0.25)" id="cf-a">return result</text>
-
-          <!-- Branch B -->
-          <rect x="270" y="16" width="176" height="72" rx="9" fill="rgba(239,68,68,0.05)" stroke="rgba(239,68,68,0.25)" stroke-width="1.5" id="cf-b"/>
-          <text x="282" y="34" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(239,68,68,0.6)" id="cf-b">Branch B</text>
-          <rect x="282" y="40" width="150" height="18" rx="4" fill="rgba(239,68,68,0.12)" id="cf-b"/>
-          <text x="292" y="53" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#f87171" id="cf-b">color = "red"</text>
-          <rect x="282" y="62" width="150" height="18" rx="4" fill="rgba(255,255,255,0.03)" id="cf-b"/>
-          <text x="292" y="75" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(255,255,255,0.25)" id="cf-b">return result</text>
-
-          <!-- Conflict output -->
-          <rect x="80" y="104" width="300" height="66" rx="9" fill="rgba(239,68,68,0.06)" stroke="rgba(239,68,68,0.35)" stroke-width="1.5" id="cf-out"/>
-          <text x="230" y="98" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(239,68,68,0.55)" font-weight="700" letter-spacing="1" id="cf-out">CONFLICT</text>
-          <text x="94" y="119" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(59,130,246,0.65)" id="cf-out">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</text>
-          <text x="94" y="132" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#60a5fa" id="cf-out">color = "blue"</text>
-          <text x="94" y="145" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(255,255,255,0.22)" id="cf-out">=======</text>
-          <text x="230" y="145" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#f87171" id="cf-out">color = "red"</text>
-          <text x="94" y="158" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(239,68,68,0.55)" id="cf-out">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/color</text>
-
-          <!-- Lines to conflict -->
-          <line x1="102" y1="88" x2="155" y2="104" stroke="rgba(239,68,68,0.38)" stroke-width="1.5" id="cf-out"/>
-          <line x1="358" y1="88" x2="305" y2="104" stroke="rgba(239,68,68,0.38)" stroke-width="1.5" id="cf-out"/>
-        </svg>
-      </div>
       <div class="cmd"><span>git mergetool</span></div>
+    </div>
+    <div class="stage">
+      <svg id="svg-cf" viewBox="0 0 460 180">
+        <!-- Branch A -->
+        <rect x="14" y="16" width="176" height="72" rx="9" fill="rgba(239,68,68,0.05)" stroke="rgba(239,68,68,0.25)" stroke-width="1.5" id="cf-a"/>
+        <text x="26" y="34" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(239,68,68,0.6)" id="cf-a">Branch A</text>
+        <rect x="26" y="40" width="150" height="18" rx="4" fill="rgba(59,130,246,0.12)" id="cf-a"/>
+        <text x="36" y="53" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#60a5fa" id="cf-a">color = "blue"</text>
+        <rect x="26" y="62" width="150" height="18" rx="4" fill="rgba(255,255,255,0.03)" id="cf-a"/>
+        <text x="36" y="75" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(255,255,255,0.25)" id="cf-a">return result</text>
+
+        <!-- Branch B -->
+        <rect x="270" y="16" width="176" height="72" rx="9" fill="rgba(239,68,68,0.05)" stroke="rgba(239,68,68,0.25)" stroke-width="1.5" id="cf-b"/>
+        <text x="282" y="34" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(239,68,68,0.6)" id="cf-b">Branch B</text>
+        <rect x="282" y="40" width="150" height="18" rx="4" fill="rgba(239,68,68,0.12)" id="cf-b"/>
+        <text x="292" y="53" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#f87171" id="cf-b">color = "red"</text>
+        <rect x="282" y="62" width="150" height="18" rx="4" fill="rgba(255,255,255,0.03)" id="cf-b"/>
+        <text x="292" y="75" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(255,255,255,0.25)" id="cf-b">return result</text>
+
+        <!-- Conflict output -->
+        <rect x="80" y="104" width="300" height="66" rx="9" fill="rgba(239,68,68,0.06)" stroke="rgba(239,68,68,0.35)" stroke-width="1.5" id="cf-out"/>
+        <text x="230" y="98" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(239,68,68,0.55)" font-weight="700" letter-spacing="1" id="cf-out">CONFLICT</text>
+        <text x="94" y="119" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(59,130,246,0.65)" id="cf-out">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</text>
+        <text x="94" y="132" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#60a5fa" id="cf-out">color = "blue"</text>
+        <text x="94" y="145" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(255,255,255,0.22)" id="cf-out">=======</text>
+        <text x="230" y="145" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#f87171" id="cf-out">color = "red"</text>
+        <text x="94" y="158" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(239,68,68,0.55)" id="cf-out">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/color</text>
+
+        <!-- Lines to conflict -->
+        <line x1="102" y1="88" x2="155" y2="104" stroke="rgba(239,68,68,0.38)" stroke-width="1.5" id="cf-out"/>
+        <line x1="358" y1="88" x2="305" y2="104" stroke="rgba(239,68,68,0.38)" stroke-width="1.5" id="cf-out"/>
+      </svg>
+    </div>
+    <div class="concept-body">
+      <p class="desc">Occurs when two branches edit the same lines differently. Git pauses the merge and marks both versions — you decide what the final code looks like.</p>
       <div class="tips">
         <p class="tips-title">Best Practices</p>
         <ul>
@@ -641,10 +687,10 @@
           <li>Test thoroughly after resolving a conflict</li>
         </ul>
       </div>
-    </article>
+    </div>
+  </section>
 
-  </main>
-</div>
+</main>
 
 <footer>
   <div class="wrap">
@@ -662,11 +708,11 @@
     .from('#hs',  { opacity: 0, y: 18, duration: 0.65 }, '-=0.5')
     .from('#st .stat', { opacity: 0, y: 14, stagger: 0.1, duration: 0.55 }, '-=0.35');
 
-  // ── Cards scroll entrance
-  gsap.utils.toArray('.card').forEach((card, i) => {
-    gsap.from(card, {
-      scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none none' },
-      opacity: 0, y: 28, duration: 0.65, delay: (i % 3) * 0.07, ease: 'power2.out',
+  // ── Sections scroll entrance
+  gsap.utils.toArray('.concept').forEach((section, i) => {
+    gsap.from(section, {
+      scrollTrigger: { trigger: section, start: 'top 90%', toggleActions: 'play none none none' },
+      opacity: 0, y: 28, duration: 0.65, ease: 'power2.out',
     });
   });
 
